@@ -2,36 +2,44 @@
 __author__ = 'Luiz Fernando SS'
 # Logarithms_v2
 
+from math import log
+
 print("\033[34mMonte seu Logarítimo\033[m")
 
-print("""Selecione o produto desejado: 
+print("""Selecione a incógnita desejada: 
 [ 1 ] Base
-[ 2 ] Expoente
-[ 3 ] Argumento""")
+[ 2 ] Logaritmo
+[ 3 ] Logaritmando""")
 
-option = int(input("A opção desejada: "))
+option = int(input("\nA opção desejada: "))
+
+def verify_conditions(base, arg):
+    if base <= 0 or base == 1 or arg <= 0:
+        raise Exception("As Condições de Existência foram violadas")
 
 if option == 1:
-    exp = int(input("Digite o expoente: "))
-    arg = int(input("Digite o argumento: "))
+    exp = float(input("Digite o logarítmo: "))
+    arg = float(input("Digite o logaritmando: "))
 
-    produto = arg**1/exp
+    result = arg**(1/exp)
 
 if option == 2:
-    base = int(input("Digite a base: "))
-    arg = int(input("Digite o argumento: "))
+    base = float(input("Digite a base: "))
+    arg = float(input("Digite o logaritmando: "))
 
-    exp = 0
-    for e in range(0, arg, base):
-        exp += 1
+    verify_conditions(base, arg)
+    exp = log(arg) / log(base)
 
-    produto = exp
+    result = exp
 
 if option == 3:
-    base = int(input("Digite a base: "))
-    exp = int(input("Digite o expoente: "))
+    base = float(input("Digite a base: "))
+    exp = float(input("Digite o logaritmo: "))
 
-    produto = base**exp
+    result = base**exp
 
-print("O Produto desse log foi:", produto)
+unknowns = ["A Base", "O Logaritmo", "O Logaritmando"]
+str = unknowns[option - 1]
+
+print("\n"+str+" desse log foi:", result)
 
